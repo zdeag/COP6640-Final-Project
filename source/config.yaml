@@ -1,0 +1,49 @@
+paths:
+  prompts_csv: ../prompts/prompts.csv
+  judge_prompt: judge/prompt.txt
+  data_dir: data
+
+generate:
+  max_concurrent: 6
+  default_params:
+    temperature: 0.7
+    top_p: 1.0
+    max_tokens: 800
+    seed: 42
+  system_prompt: null
+
+judge:
+  model: anthropic/claude-3.7-sonnet
+  prompt_version: v1-2026-04-15
+  params:
+    temperature: 0.0
+    max_tokens: 400
+    seed: 7
+  max_parse_retries: 1
+  max_concurrent: 6
+
+models:
+  - label: llama31_8b
+    openrouter_id: meta-llama/llama-3.1-8b-instruct
+  - label: mistral_7b
+    openrouter_id: mistralai/mistral-7b-instruct-v0.1
+  - label: qwen25_7b
+    openrouter_id: qwen/qwen-2.5-7b-instruct
+  - label: gpt4o_mini
+    openrouter_id: openai/gpt-4o-mini
+  - label: claude_haiku
+    openrouter_id: anthropic/claude-3.5-haiku
+
+analysis:
+  bootstrap_n: 1000
+  ci: 0.95
+  rng_seed: 0
+
+sampling:
+  n_human_label: 60
+  rng_seed: 7
+
+openrouter:
+  app_name: syco-bench
+  site_url: https://github.com/anthropics/syco
+  request_timeout_s: 60
